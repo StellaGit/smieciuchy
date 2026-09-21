@@ -1,0 +1,27 @@
+# Org standards / defaults the orchestrator applies automatically so a human is
+# never asked what the organization already mandates. Grows over time.
+#
+# Seeded from cases.txt (inc2). Add naming convention, approval matrix, tagging,
+# baseline, etc. as they are confirmed.
+
+new_account:
+  subnet_cidr: "/24"          # default IP range per new account
+  region_default: "us-east-1"
+  az_by_environment:
+    dev: 1                     # dev needs at least 1 AZ
+    prod: 2                    # prod needs at least 2 AZ
+    default: 2                 # anything unspecified is treated as prod-grade
+
+# Which request categories require an owner/sponsor approval before a human acts.
+approval_required:
+  - access_request
+  - resource_access
+  - account_lifecycle
+  - network_change
+  - resource_policy_change
+  - decommission
+
+# Placeholder for the server naming convention referenced by the legacy KB.
+# (location + application + environment + number). Fill in when confirmed.
+naming_convention:
+  pattern: "[location][application][environment][number]"
